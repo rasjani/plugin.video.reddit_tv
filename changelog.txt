@@ -41,3 +41,10 @@
 - Fixed bug with mysql dbs
 1.1.6
 - Fixed bug with Chrome Launcher
+1.2.0
+- Upgrade to kodi
+- youtube upgrade / fix
+- deprecate xbox support
+- vimeo upgrade / fix
+- Finnish translation
+- disabled downloads for youtube/vimeo

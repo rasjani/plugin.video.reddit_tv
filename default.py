@@ -408,11 +408,11 @@ def getPluginUrl(hoster, videoID):
 
 
 def getYoutubePlayPluginUrl(id):
-    return "plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid=" + id
+    return "plugin://plugin.video.youtube/play/?video_id=" + id
 
 
 def getVimeoPlayPluginUrl(id):
-    return "plugin://plugin.video.vimeo/?path=/root/video&action=play_video&videoid=" + id
+    return "plugin://plugin.video.vimeo/play/?video_id=" + id
 
 
 def getDailymotionPlayPluginUrl(id):
@@ -614,11 +614,13 @@ def addLink(name, mode, iconimage, description, date, nr, site, subreddit, hoste
     liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": description, "Aired": date, "Episode": nr})
     liz.setProperty('IsPlayable', 'true')
     entries = []
-    if hoster=="youtube":
-        entries.append((translation(30025), 'RunPlugin('+getYoutubeDownloadPluginUrl(videoID)+')',))
-    elif hoster=="vimeo":
-        entries.append((translation(30025), 'RunPlugin('+getVimeoDownloadPluginUrl(videoID)+')',))
-    elif hoster=="dailymotion":
+    # youtube and vimeo disabled for now, as new plugins do not support
+    # downloading yet.
+    #if hoster=="youtube":
+    #    entries.append((translation(30025), 'RunPlugin('+getYoutubeDownloadPluginUrl(videoID)+')',))
+    #elif hoster=="vimeo":
+    #    entries.append((translation(30025), 'RunPlugin('+getVimeoDownloadPluginUrl(videoID)+')',))
+    if hoster=="dailymotion":
         entries.append((translation(30025), 'RunPlugin('+getDailymotionDownloadPluginUrl(videoID)+')',))
     elif hoster=="liveleak":
         entries.append((translation(30025), 'RunPlugin('+getLiveleakDownloadPluginUrl(videoID)+')',))
