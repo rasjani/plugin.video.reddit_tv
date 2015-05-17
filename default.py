@@ -19,7 +19,6 @@ import SimpleDownloader
 addon = xbmcaddon.Addon()
 pluginhandle = int(sys.argv[1])
 addonID = addon.getAddonInfo('id')
-xbox = xbmc.getCondVisibility("System.Platform.xbox")
 osWin = xbmc.getCondVisibility('system.platform.windows')
 osOsx = xbmc.getCondVisibility('system.platform.osx')
 osLinux = xbmc.getCondVisibility('system.platform.linux')
@@ -409,67 +408,33 @@ def getPluginUrl(hoster, videoID):
 
 
 def getYoutubePlayPluginUrl(id):
-    if xbox:
-        url = "plugin://video/YouTube/?path=/root/video&action=play_video&videoid=" + id
-    else:
-        url = "plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid=" + id
-    return url
+    return "plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid=" + id
 
 
 def getVimeoPlayPluginUrl(id):
-    if xbox:
-        url = "plugin://video/Vimeo/?path=/root/video&action=play_video&videoid=" + id
-    else:
-        url = "plugin://plugin.video.vimeo/?path=/root/video&action=play_video&videoid=" + id
-    return url
+    return "plugin://plugin.video.vimeo/?path=/root/video&action=play_video&videoid=" + id
 
 
 def getDailymotionPlayPluginUrl(id):
-    if xbox:
-        url = "plugin://video/DailyMotion.com/?mode=playVideo&url=" + id
-    else:
-        url = "plugin://plugin.video.dailymotion_com/?mode=playVideo&url=" + id
-    return url
+    return "plugin://plugin.video.dailymotion_com/?mode=playVideo&url=" + id
 
 
 def getLiveleakPlayPluginUrl(id):
-    if xbox:
-        url = "plugin://video/Reddit.com/?mode=playLiveLeakVideo&url=" + id
-    else:
-        url = "plugin://plugin.video.reddit_tv/?mode=playLiveLeakVideo&url=" + id
-    return url
-
+    return "plugin://plugin.video.reddit_tv/?mode=playLiveLeakVideo&url=" + id
 
 def getYoutubeDownloadPluginUrl(id):
-    if xbox:
-        url = "plugin://video/YouTube/?path=/root/search&action=download&videoid=" + id
-    else:
-        url = "plugin://plugin.video.youtube/?path=/root/search&action=download&videoid=" + id
-    return url
+    return "plugin://plugin.video.youtube/?path=/root/search&action=download&videoid=" + id
 
 
 def getVimeoDownloadPluginUrl(id):
-    if xbox:
-        url = "plugin://video/Vimeo/?path=/root/search/new/search&action=download&videoid=" + id
-    else:
-        url = "plugin://plugin.video.vimeo/?path=/root/search/new/search&action=download&videoid=" + id
-    return url
-
+    return "plugin://plugin.video.vimeo/?path=/root/search/new/search&action=download&videoid=" + id
 
 def getDailymotionDownloadPluginUrl(id):
-    if xbox:
-        url = "plugin://video/DailyMotion.com/?mode=downloadVideo&url=" + id
-    else:
-        url = "plugin://plugin.video.dailymotion_com/?mode=downloadVideo&url=" + id
-    return url
+    return "plugin://plugin.video.dailymotion_com/?mode=downloadVideo&url=" + id
 
 
 def getLiveleakDownloadPluginUrl(id):
-    if xbox:
-        url = "plugin://video/Reddit.com/?mode=downloadLiveLeakVideo&url=" + id
-    else:
-        url = "plugin://plugin.video.reddit_tv/?mode=downloadLiveLeakVideo&url=" + id
-    return url
+    return "plugin://plugin.video.reddit_tv/?mode=downloadLiveLeakVideo&url=" + id
 
 
 def getLiveLeakStreamUrl(id):
