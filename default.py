@@ -17,6 +17,10 @@ import SimpleDownloader
 
 
 addon = xbmcaddon.Addon()
+def addonEnabled(aid, setting):
+    return addon.getSetting(setting) == "true" and xbmc.getCondVisibility( ('System.HasAddon(%s)' % aid) )
+
+
 pluginhandle = int(sys.argv[1])
 addonID = addon.getAddonInfo('id')
 osWin = xbmc.getCondVisibility('system.platform.windows')
@@ -46,10 +50,10 @@ cat_com_m = addon.getSetting("cat_com_m") == "true"
 cat_com_y = addon.getSetting("cat_com_y") == "true"
 cat_com_a = addon.getSetting("cat_com_a") == "true"
 
-show_youtube = addon.getSetting("show_youtube") == "true"
-show_vimeo = addon.getSetting("show_vimeo") == "true"
-show_liveleak = addon.getSetting("show_liveleak") == "true"
-show_dailymotion = addon.getSetting("show_dailymotion") == "true"
+show_youtube = addonEnabled("plugin.video.youtube","show_youtube")
+show_vimeo = addonEnabled("plugin.video.vimeo","show_vimeo")
+show_liveleak = addonEnabled("plugin.video.liveleak","show_liveleak")
+show_dailymotion = addonEnabled("plugin.video.dailymotion_com","show_dailymotion")
 show_gfycat = addon.getSetting("show_gfycat") == "true"
 
 site_vimeo = "site:vimeo.com"
@@ -57,6 +61,18 @@ site_youtube = "site:youtu.be OR site:youtube.com"
 site_liveleak = "site:liveleak.com"
 site_dailymotion = "site:dailymotion.com"
 site_gfycat = "site:gfycat.com"
+
+allEnabledHosters = []
+if show_youtube:
+    allEnabledHosters.append(site_youtube)
+if show_vimeo:
+    allEnabledHosters.append(site_vimeo)
+if show_liveleak:
+    allEnabledHosters.append(site_liveleak)
+if show_dailymotion:
+    allEnabledHosters.append(site_dailymotion)
+if show_gfycat:
+    allEnabledHosters.append(site_gfycat)
 
 filter = addon.getSetting("filter") == "true"
 filterRating = int(addon.getSetting("filterRating"))
@@ -96,7 +112,7 @@ nsfwFile = xbmc.translatePath("special://profile/addon_data/"+addonID+"/nsfw")
 if not os.path.isdir(addonUserDataFolder):
     os.mkdir(addonUserDataFolder)
 
-allHosterQuery = urllib.quote_plus("site:youtu.be OR site:youtube.com OR site:vimeo.com OR site:liveleak.com OR site:dailymotion.com OR site:gfycat.com")
+allHosterQuery = urllib.quote_plus(" OR ".join(allEnabledHosters))
 if os.path.exists(nsfwFile):
     nsfw = ""
 else:
