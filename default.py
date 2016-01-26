@@ -52,6 +52,12 @@ show_liveleak = addon.getSetting("show_liveleak") == "true"
 show_dailymotion = addon.getSetting("show_dailymotion") == "true"
 show_gfycat = addon.getSetting("show_gfycat") == "true"
 
+site_vimeo = "site:vimeo.com"
+site_youtube = "site:youtu.be OR site:youtube.com"
+site_liveleak = "site:liveleak.com"
+site_dailymotion = "site:dailymotion.com"
+site_gfycat = "site:gfycat.com"
+
 filter = addon.getSetting("filter") == "true"
 filterRating = int(addon.getSetting("filterRating"))
 filterThreshold = int(addon.getSetting("filterThreshold"))
@@ -192,15 +198,15 @@ def index():
             addDirR(entry, entry.lower(), 'listSorting', "")
 
     if show_vimeo:
-        addDir("[ Vimeo.com ]", "all", 'listSorting', "", "site:vimeo.com")
+        addDir("[ Vimeo.com ]", "all", 'listSorting', "", site_vimeo)
     if show_youtube:
-        addDir("[ Youtube.com ]", "all", 'listSorting', "", "site:youtu.be OR site:youtube.com")
+        addDir("[ Youtube.com ]", "all", 'listSorting', "", site_youtube)
     if show_liveleak:
-        addDir("[ Liveleak.com ]", "all", 'listSorting', "", "site:liveleak.com")
+        addDir("[ Liveleak.com ]", "all", 'listSorting', "", site_liveleak)
     if show_dailymotion:
-        addDir("[ Dailymotion.com ]", "all", 'listSorting', "", "site:dailymotion.com")
+        addDir("[ Dailymotion.com ]", "all", 'listSorting', "", site_dailymotion)
     if show_gfycat:
-        addDir("[ GfyCat.com ]", "all", 'listSorting', "", "site:gfycat.com")
+        addDir("[ GfyCat.com ]", "all", 'listSorting', "", site_gfycat)
     addDir("[B]- "+translation(30001)+"[/B]", "", 'addSubreddit', "")
     addDir("[B]- "+translation(30019)+"[/B]", "", 'searchReddits', "")
     xbmcplugin.endOfDirectory(pluginhandle)
