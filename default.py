@@ -285,81 +285,84 @@ def listVideos(url, subreddit):
     if showUnfinished:
         addDir("[B]- "+translation(30015)+"[/B]", url, 'autoPlay', "", "UNFINISHED_RANDOM")
     content = opener.open(url).read()
-    content = json.loads(content.replace('\\"', '\''))
-    count = 1
-    for entry in content['data']['children']:
+    try:
+        content = json.loads(content.replace('\\"', '\''))
+        count = 1
+        for entry in content['data']['children']:
+            try:
+                title = cleanTitle(entry['data']['title'].encode('utf-8'))
+                try:
+                    description = cleanTitle(entry['data']['media']['oembed']['description'].encode('utf-8'))
+                except:
+                    description = ""
+                commentsUrl = urlMain+entry['data']['permalink'].encode('utf-8')
+                try:
+                    date = str(entry['data']['created_utc'])
+                    date = date.split(".")[0]
+                    dateTime = str(datetime.datetime.fromtimestamp(int(date)).strftime('%Y-%m-%d %H:%M'))
+                    date = dateTime.split(" ")[0]
+                except:
+                    date = ""
+                    dateTime = ""
+                ups = entry['data']['ups']
+                downs = entry['data']['downs']
+                rating = 100
+                if ups+downs>0:
+                    rating = int(ups*100/(ups+downs))
+                if filter and (ups+downs) > filterThreshold and rating < filterRating:
+                    continue
+                comments = entry['data']['num_comments']
+                description = dateTime+"  |  "+str(ups+downs)+" votes: "+str(rating)+"% Up  |  "+str(comments)+" comments\n"+description
+                try:
+                    thumb = entry['data']['media']['oembed']['thumbnail_url'].encode('utf-8')
+                except:
+                    thumb = entry['data']['thumbnail'].encode('utf-8')
+                try:
+                    url = entry['data']['media']['oembed']['url']+'"'
+                except:
+                    url = entry['data']['url']+'"'
+
+
+                matchYoutube = re.compile('youtube.com/watch\\?v=(.+?)"', re.DOTALL).findall(url)
+                matchVimeo = re.compile('vimeo.com/(.+?)"', re.DOTALL).findall(url)
+                matchDailyMotion = re.compile('dailymotion.com/video/(.+?)_', re.DOTALL).findall(url)
+                matchDailyMotion2 = re.compile('dailymotion.com/.+?video=(.+?)', re.DOTALL).findall(url)
+                matchLiveLeak = re.compile('liveleak.com/view\\?i=(.+?)"', re.DOTALL).findall(url)
+                matchGfycat = re.compile('gfycat.com/(.+?)"', re.DOTALL).findall(url)
+                hoster = ""
+                if matchYoutube and show_youtube:
+                    hoster = "youtube"
+                    videoID = matchYoutube[0]
+                elif matchVimeo and show_vimeo:
+                    hoster = "vimeo"
+                    videoID = matchVimeo[0].replace("#", "").split("?")[0]
+                elif matchDailyMotion and show_dailymotion:
+                    hoster = "dailymotion"
+                    videoID = matchDailyMotion[0]
+                elif matchDailyMotion2 and show_dailymotion:
+                    hoster = "dailymotion"
+                    videoID = matchDailyMotion2[0]
+                elif matchLiveLeak and show_liveleak:
+                    hoster = "liveleak"
+                    videoID = matchLiveLeak[0].split("#")[0]
+                elif matchGfycat and show_gfycat:
+                    hoster = "gfycat"
+                    videoID = matchGfycat[0]
+
+                if hoster:
+                    addLink(title, 'playVideo', thumb, description, date, count, commentsUrl, subreddit, hoster, videoID)
+                    count+=1
+            except:
+                pass
         try:
-            title = cleanTitle(entry['data']['title'].encode('utf-8'))
-            try:
-                description = cleanTitle(entry['data']['media']['oembed']['description'].encode('utf-8'))
-            except:
-                description = ""
-            commentsUrl = urlMain+entry['data']['permalink'].encode('utf-8')
-            try:
-                date = str(entry['data']['created_utc'])
-                date = date.split(".")[0]
-                dateTime = str(datetime.datetime.fromtimestamp(int(date)).strftime('%Y-%m-%d %H:%M'))
-                date = dateTime.split(" ")[0]
-            except:
-                date = ""
-                dateTime = ""
-            ups = entry['data']['ups']
-            downs = entry['data']['downs']
-            rating = 100
-            if ups+downs>0:
-                rating = int(ups*100/(ups+downs))
-            if filter and (ups+downs) > filterThreshold and rating < filterRating:
-                continue
-            comments = entry['data']['num_comments']
-            description = dateTime+"  |  "+str(ups+downs)+" votes: "+str(rating)+"% Up  |  "+str(comments)+" comments\n"+description
-            try:
-                thumb = entry['data']['media']['oembed']['thumbnail_url'].encode('utf-8')
-            except:
-                thumb = entry['data']['thumbnail'].encode('utf-8')
-            try:
-                url = entry['data']['media']['oembed']['url']+'"'
-            except:
-                url = entry['data']['url']+'"'
-
-
-            matchYoutube = re.compile('youtube.com/watch\\?v=(.+?)"', re.DOTALL).findall(url)
-            matchVimeo = re.compile('vimeo.com/(.+?)"', re.DOTALL).findall(url)
-            matchDailyMotion = re.compile('dailymotion.com/video/(.+?)_', re.DOTALL).findall(url)
-            matchDailyMotion2 = re.compile('dailymotion.com/.+?video=(.+?)', re.DOTALL).findall(url)
-            matchLiveLeak = re.compile('liveleak.com/view\\?i=(.+?)"', re.DOTALL).findall(url)
-            matchGfycat = re.compile('gfycat.com/(.+?)"', re.DOTALL).findall(url)
-            hoster = ""
-            if matchYoutube and show_youtube:
-                hoster = "youtube"
-                videoID = matchYoutube[0]
-            elif matchVimeo and show_vimeo:
-                hoster = "vimeo"
-                videoID = matchVimeo[0].replace("#", "").split("?")[0]
-            elif matchDailyMotion and show_dailymotion:
-                hoster = "dailymotion"
-                videoID = matchDailyMotion[0]
-            elif matchDailyMotion2 and show_dailymotion:
-                hoster = "dailymotion"
-                videoID = matchDailyMotion2[0]
-            elif matchLiveLeak and show_liveleak:
-                hoster = "liveleak"
-                videoID = matchLiveLeak[0].split("#")[0]
-            elif matchGfycat and show_gfycat:
-                hoster = "gfycat"
-                videoID = matchGfycat[0]
-
-            if hoster:
-                addLink(title, 'playVideo', thumb, description, date, count, commentsUrl, subreddit, hoster, videoID)
-                count+=1
+            after = content['data']['after']
+            if "&after=" in currentUrl:
+                nextUrl = currentUrl[:currentUrl.find("&after=")]+"&after="+after
+            else:
+                nextUrl = currentUrl+"&after="+after
+            addDir(translation(30016), nextUrl, 'listVideos', "", subreddit)
         except:
             pass
-    try:
-        after = content['data']['after']
-        if "&after=" in currentUrl:
-            nextUrl = currentUrl[:currentUrl.find("&after=")]+"&after="+after
-        else:
-            nextUrl = currentUrl+"&after="+after
-        addDir(translation(30016), nextUrl, 'listVideos', "", subreddit)
     except:
         pass
     if forceViewMode:
