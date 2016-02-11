@@ -17,15 +17,18 @@ import SimpleDownloader
 
 
 addon = xbmcaddon.Addon()
-def addonEnabled(aid, setting):
-    return addon.getSetting(setting) == "true" and xbmc.getCondVisibility( ('System.HasAddon(%s)' % aid) )
+def addonInstalled(aid):
+    return xbmc.getCondVisibility( ('System.HasAddon(%s)' % aid) )
 
+def addonEnabled(aid, setting):
+    return addon.getSetting(setting) == "true" and addonInstalled(aid)
 
 pluginhandle = int(sys.argv[1])
 addonID = addon.getAddonInfo('id')
 osWin = xbmc.getCondVisibility('system.platform.windows')
 osOsx = xbmc.getCondVisibility('system.platform.osx')
 osLinux = xbmc.getCondVisibility('system.platform.linux')
+osAndroid = xbmc.getCondVisibility('system.platform.android')
 
 socket.setdefaulttimeout(30)
 opener = urllib2.build_opener()
@@ -99,6 +102,12 @@ searchTime = ["ask", "hour", "day", "week", "month", "year", "all"][searchTime]
 showBrowser = addon.getSetting("showBrowser") == "true"
 browser_win = int(addon.getSetting("browser_win"))
 browser_wb_zoom = str(addon.getSetting("browser_wb_zoom"))
+
+if showBrowser and osWin and browser_win == 0:
+    showBrowser = addonInstalled('plugin.program.webbrowser')
+else
+    showBrowser = addonInstalled('plugin.program.chrome.launcher')
+
 
 ll_qualiy = int(addon.getSetting("ll_qualiy"))
 ll_qualiy = ["480p", "720p"][ll_qualiy]
@@ -720,7 +729,7 @@ def addLink(name, mode, iconimage, description, date, nr, site, subreddit, hoste
 
     favEntry = '<favourite name="'+name+'" url="'+u+'" description="'+description+'" thumb="'+iconimage+'" date="'+date+'" site="'+site+'" />'
     entries.append((translation(30022), 'RunPlugin(plugin://'+addonID+'/?mode=addToFavs&url='+urllib.quote_plus(favEntry)+'&type='+urllib.quote_plus(subreddit)+')',))
-    if showBrowser and (osWin or osOsx or osLinux):
+    if showBrowser and (osWin or osOsx or osLinux or osAndroid):
         if osWin and browser_win==0:
             entries.append((translation(30021), 'RunPlugin(plugin://plugin.program.webbrowser/?url='+urllib.quote_plus(site)+'&mode=showSite&zoom='+browser_wb_zoom+'&stopPlayback=no&showPopups=no&showScrollbar=no)',))
         else:
@@ -739,7 +748,7 @@ def addFavLink(name, url, mode, iconimage, description, date, site, subreddit):
     entries.append((translation(30018), 'RunPlugin(plugin://'+addonID+'/?mode=queueVideo&url='+urllib.quote_plus(url)+'&name='+urllib.quote_plus(name)+')',))
     favEntry = '<favourite name="'+name+'" url="'+url+'" description="'+description+'" thumb="'+iconimage+'" date="'+date+'" site="'+site+'" />'
     entries.append((translation(30024), 'RunPlugin(plugin://'+addonID+'/?mode=removeFromFavs&url='+urllib.quote_plus(favEntry)+'&type='+urllib.quote_plus(subreddit)+')',))
-    if showBrowser and (osWin or osOsx or osLinux):
+    if showBrowser and (osWin or osOsx or osLinux or osAndroid):
         if osWin and browser_win==0:
             entries.append((translation(30021), 'RunPlugin(plugin://plugin.program.webbrowser/?url='+urllib.quote_plus(site)+'&mode=showSite&zoom='+browser_wb_zoom+'&stopPlayback=no&showPopups=no&showScrollbar=no)',))
         else:
