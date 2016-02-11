@@ -56,6 +56,7 @@
         <setting label="30176" enable="eq(-2,0)" type="action" action="RunPlugin(plugin://plugin.program.webbrowser/?mode=mapKeys)"/>
         <setting id="browser_osx" type="enum" label="30173" values="Chrome Launcher" default="0"/>
         <setting id="browser_lin" type="enum" label="30174" values="Chrome Launcher" default="0"/>
+        <setting id="browser_and" type="enum" label="30199" values="Chrome Launcher" default="0"/>
     </category>
     <category label="30193">
         <setting id="show_youtube" type="bool" label="30194" default="true"/>
