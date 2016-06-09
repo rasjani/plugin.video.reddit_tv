@@ -17,6 +17,7 @@ import SimpleDownloader
 
 
 addon = xbmcaddon.Addon()
+
 def addonInstalled(aid):
     return xbmc.getCondVisibility( ('System.HasAddon(%s)' % aid) )
 
@@ -58,12 +59,14 @@ show_vimeo = addonEnabled("plugin.video.vimeo","show_vimeo")
 show_liveleak = addonEnabled("plugin.video.liveleak","show_liveleak")
 show_dailymotion = addonEnabled("plugin.video.dailymotion_com","show_dailymotion")
 show_gfycat = addon.getSetting("show_gfycat") == "true"
+show_streamable = addon.getSetting("show_streamable") == "true"
 
 site_vimeo = "site:vimeo.com"
 site_youtube = "site:youtu.be OR site:youtube.com"
 site_liveleak = "site:liveleak.com"
 site_dailymotion = "site:dailymotion.com"
 site_gfycat = "site:gfycat.com"
+site_streamable = "site:streamable.com"
 
 allEnabledHosters = []
 if show_youtube:
@@ -76,6 +79,8 @@ if show_dailymotion:
     allEnabledHosters.append(site_dailymotion)
 if show_gfycat:
     allEnabledHosters.append(site_gfycat)
+if show_streamable:
+    allEnabledHosters.append(site_streamable)
 
 filter = addon.getSetting("filter") == "true"
 filterRating = int(addon.getSetting("filterRating"))
@@ -105,7 +110,7 @@ browser_wb_zoom = str(addon.getSetting("browser_wb_zoom"))
 
 if showBrowser and osWin and browser_win == 0:
     showBrowser = addonInstalled('plugin.program.webbrowser')
-else
+else:
     showBrowser = addonInstalled('plugin.program.chrome.launcher')
 
 
@@ -232,6 +237,9 @@ def index():
         addDir("[ Dailymotion.com ]", "all", 'listSorting', "", site_dailymotion)
     if show_gfycat:
         addDir("[ GfyCat.com ]", "all", 'listSorting', "", site_gfycat)
+    if show_streamable:
+        addDir("[ Streamable.com ]", "all", 'listSorting', "", site_streamable)
+
     addDir("[B]- "+translation(30001)+"[/B]", "", 'addSubreddit', "")
     addDir("[B]- "+translation(30019)+"[/B]", "", 'searchReddits', "")
     xbmcplugin.endOfDirectory(pluginhandle)
@@ -331,13 +339,13 @@ def listVideos(url, subreddit):
                 except:
                     url = entry['data']['url']+'"'
 
-
                 matchYoutube = re.compile('youtube.com/watch\\?v=(.+?)"', re.DOTALL).findall(url)
                 matchVimeo = re.compile('vimeo.com/(.+?)"', re.DOTALL).findall(url)
                 matchDailyMotion = re.compile('dailymotion.com/video/(.+?)_', re.DOTALL).findall(url)
                 matchDailyMotion2 = re.compile('dailymotion.com/.+?video=(.+?)', re.DOTALL).findall(url)
                 matchLiveLeak = re.compile('liveleak.com/view\\?i=(.+?)"', re.DOTALL).findall(url)
                 matchGfycat = re.compile('gfycat.com/(.+?)"', re.DOTALL).findall(url)
+                matchStreamable = re.compile('streamable\.com/(.*)"', re.DOTALL).findall(url)
                 hoster = ""
                 if matchYoutube and show_youtube:
                     hoster = "youtube"
@@ -357,6 +365,9 @@ def listVideos(url, subreddit):
                 elif matchGfycat and show_gfycat:
                     hoster = "gfycat"
                     videoID = matchGfycat[0]
+                elif matchStreamable and show_streamable:
+                    hoster = "streamable"
+                    videoID = matchStreamable[0]
 
                 if hoster:
                     addLink(title, 'playVideo', thumb, description, date, count, commentsUrl, subreddit, hoster, videoID)
@@ -434,6 +445,8 @@ def autoPlay(url, type):
                 url = getLiveleakPlayPluginUrl(matchLiveLeak[0].split("#")[0])
             elif matchGfyCat and show_gfycat:
                 url = getGfycatPlayPluginUrl(matchGfycat[0])
+            elif matchStreamable and show_streamable:
+                url = getStreamablePlayPluginUrl(matchGfycat[0])
             if url:
                 url = sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode=playVideo"
                 if type.startswith("ALL_"):
@@ -466,6 +479,8 @@ def getPluginUrl(hoster, videoID):
         return getLiveleakPlayPluginUrl(videoID)
     elif hoster=="gfycat":
         return getGfycatPlayPluginUrl(videoID)
+    elif hoster=="streamable":
+        return getStreamablePlayPluginUrl(videoID)
 
 
 def getYoutubePlayPluginUrl(id):
@@ -503,10 +518,16 @@ def getGfycatDownloadPluginUrl(id):
 def getGfycatPlayPluginUrl(id):
     return "plugin://plugin.video.reddit_tv/?mode=playGfycatVideo&url=" + id
 
+def getStreamablePlayPluginUrl(id):
+    return "plugin://plugin.video.reddit_tv/?mode=playStreamableVideo&url=" + id
+
 def getGfycatStreamJson(id):
     content = opener.open("http://gfycat.com/cajax/get/"+id).read()
     content = json.loads(content.replace('\\"', '\''))
     return content
+
+def getStreamableStreamUrl(id):
+    return "https://cdn.streamable.com/video/mp4/%s.mp4" % id
 
 def getGfycatStreamUrl(id):
     content = getGfycatStreamJson(id)
@@ -528,6 +549,9 @@ def playVideo(url):
     listitem = xbmcgui.ListItem(path=url)
     xbmcplugin.setResolvedUrl(pluginhandle, True, listitem)
 
+def playStreamableVideo(id):
+    playVideo(getStreamableStreamUrl(id))
+
 def playGfycatVideo(id):
     playVideo(getGfycatStreamUrl(id))
 
@@ -543,7 +567,6 @@ def downloadGfycatVideo(id):
         xbmc.executebuiltin('XBMC.Notification(Download:,gfycat '+translation(30186)+'!,5000)')
         addon.openSettings()
         gfy_downDir = addon.getSetting("gfy_downDir")
-        print gfy_downDir
 
     data = getGfycatStreamJson(id)
     filename = "%s.mp4"%(data["gfyItem"]["gfyName"])
@@ -810,6 +833,8 @@ elif mode == 'playLiveLeakVideo':
     playLiveLeakVideo(url)
 elif mode == 'playGfycatVideo':
     playGfycatVideo(url)
+elif mode == 'playStreamableVideo':
+    playStreamableVideo(url)
 elif mode == 'downloadLiveLeakVideo':
     downloadLiveLeakVideo(url)
 elif mode == 'downloadGfycatVideo':

@@ -64,5 +64,6 @@
         <setting id="show_liveleak" type="bool" label="30196" default="true"/>
         <setting id="show_dailymotion" type="bool" label="30197" default="true"/>
         <setting id="show_gfycat" type="bool" label="30198" default="true"/>
+        <setting id="show_streamable" type="bool" label="30200" default="true"/>
     </category>
 </settings>
