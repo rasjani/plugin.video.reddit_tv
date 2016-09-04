@@ -333,6 +333,7 @@ def listVideos(url, subreddit):
 
 
                 matchYoutube = re.compile('youtube.com/watch\\?v=(.+?)"', re.DOTALL).findall(url)
+                matchYoutube2 = re.compile('youtu.be/(.+?)"', re.DOTALL).findall(url)
                 matchVimeo = re.compile('vimeo.com/(.+?)"', re.DOTALL).findall(url)
                 matchDailyMotion = re.compile('dailymotion.com/video/(.+?)_', re.DOTALL).findall(url)
                 matchDailyMotion2 = re.compile('dailymotion.com/.+?video=(.+?)', re.DOTALL).findall(url)
@@ -342,6 +343,9 @@ def listVideos(url, subreddit):
                 if matchYoutube and show_youtube:
                     hoster = "youtube"
                     videoID = matchYoutube[0]
+                if matchYoutube2 and show_youtube:
+                    hoster = "youtube"
+                    videoID = matchYoutube2[0]
                 elif matchVimeo and show_vimeo:
                     hoster = "vimeo"
                     videoID = matchVimeo[0].replace("#", "").split("?")[0]
@@ -416,6 +420,7 @@ def autoPlay(url, type):
             except:
                 url = entry['data']['url']+'"'
             matchYoutube = re.compile('youtube.com/watch\\?v=(.+?)"', re.DOTALL).findall(url)
+            matchYoutube2 = re.compile('youtu.be/(.+?)"', re.DOTALL).findall(url)
             matchVimeo = re.compile('vimeo.com/(.+?)"', re.DOTALL).findall(url)
             matchDailyMotion = re.compile('dailymotion.com/video/(.+?)_', re.DOTALL).findall(url)
             matchDailyMotion2 = re.compile('dailymotion.com/.+?video=(.+?)', re.DOTALL).findall(url)
@@ -424,6 +429,8 @@ def autoPlay(url, type):
             url = ""
             if matchYoutube and show_youtube:
                 url = getYoutubePlayPluginUrl(matchYoutube[0])
+            if matchYoutube2 and show_youtube:
+                url = getYoutubePlayPluginUrl(matchYoutube2[0])
             elif matchVimeo and show_vimeo:
                 url = getVimeoPlayPluginUrl(matchVimeo[0].replace("#", "").split("?")[0])
             elif matchDailyMotion and show_dailymotion:
