@@ -49,14 +49,6 @@
         <setting id="ll_downDir" type="folder" label="30184" default=""/>
         <setting id="gfy_downDir" type="folder" label="30192" default=""/>
     </category>
-    <category label="30118">
-        <setting id="showBrowser" type="bool" label="30177" default="true"/>
-        <setting id="browser_win" type="enum" label="30172" values="XBMC WebBrowser|Chrome Launcher" default="1"/>
-        <setting id="browser_wb_zoom" type="number" label="30175" enable="eq(-1,0)" default="150"/>
-        <setting label="30176" enable="eq(-2,0)" type="action" action="RunPlugin(plugin://plugin.program.webbrowser/?mode=mapKeys)"/>
-        <setting id="browser_osx" type="enum" label="30173" values="Chrome Launcher" default="0"/>
-        <setting id="browser_lin" type="enum" label="30174" values="Chrome Launcher" default="0"/>
-    </category>
     <category label="30193">
         <setting id="show_youtube" type="bool" label="30194" default="true"/>
         <setting id="show_vimeo" type="bool" label="30195" default="true"/>

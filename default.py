@@ -96,10 +96,6 @@ searchSort = ["ask", "relevance", "new", "hot", "top", "comments"][searchSort]
 searchTime = int(addon.getSetting("searchTime"))
 searchTime = ["ask", "hour", "day", "week", "month", "year", "all"][searchTime]
 
-showBrowser = addon.getSetting("showBrowser") == "true"
-browser_win = int(addon.getSetting("browser_win"))
-browser_wb_zoom = str(addon.getSetting("browser_wb_zoom"))
-
 ll_qualiy = int(addon.getSetting("ll_qualiy"))
 ll_qualiy = ["480p", "720p"][ll_qualiy]
 ll_downDir = str(addon.getSetting("ll_downDir"))
@@ -720,11 +716,6 @@ def addLink(name, mode, iconimage, description, date, nr, site, subreddit, hoste
 
     favEntry = '<favourite name="'+name+'" url="'+u+'" description="'+description+'" thumb="'+iconimage+'" date="'+date+'" site="'+site+'" />'
     entries.append((translation(30022), 'RunPlugin(plugin://'+addonID+'/?mode=addToFavs&url='+urllib.quote_plus(favEntry)+'&type='+urllib.quote_plus(subreddit)+')',))
-    if showBrowser and (osWin or osOsx or osLinux):
-        if osWin and browser_win==0:
-            entries.append((translation(30021), 'RunPlugin(plugin://plugin.program.webbrowser/?url='+urllib.quote_plus(site)+'&mode=showSite&zoom='+browser_wb_zoom+'&stopPlayback=no&showPopups=no&showScrollbar=no)',))
-        else:
-            entries.append((translation(30021), 'RunPlugin(plugin://plugin.program.chrome.launcher/?url='+urllib.quote_plus(site)+'&mode=showSite)',))
     liz.addContextMenuItems(entries)
     ok = xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz)
     return ok
@@ -739,11 +730,6 @@ def addFavLink(name, url, mode, iconimage, description, date, site, subreddit):
     entries.append((translation(30018), 'RunPlugin(plugin://'+addonID+'/?mode=queueVideo&url='+urllib.quote_plus(url)+'&name='+urllib.quote_plus(name)+')',))
     favEntry = '<favourite name="'+name+'" url="'+url+'" description="'+description+'" thumb="'+iconimage+'" date="'+date+'" site="'+site+'" />'
     entries.append((translation(30024), 'RunPlugin(plugin://'+addonID+'/?mode=removeFromFavs&url='+urllib.quote_plus(favEntry)+'&type='+urllib.quote_plus(subreddit)+')',))
-    if showBrowser and (osWin or osOsx or osLinux):
-        if osWin and browser_win==0:
-            entries.append((translation(30021), 'RunPlugin(plugin://plugin.program.webbrowser/?url='+urllib.quote_plus(site)+'&mode=showSite&zoom='+browser_wb_zoom+'&stopPlayback=no&showPopups=no&showScrollbar=no)',))
-        else:
-            entries.append((translation(30021), 'RunPlugin(plugin://plugin.program.chrome.launcher/?url='+urllib.quote_plus(site)+'&mode=showSite)',))
     liz.addContextMenuItems(entries)
     ok = xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=url, listitem=liz)
     return ok
