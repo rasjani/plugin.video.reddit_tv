@@ -1,0 +1,379 @@
+# Addon Name: Reddit TV
+# Addon id: plugin.video.reddit_tv
+# Addon Provider: rasjani
+# Translators: rasjani
+msgid ""
+msgstr ""
+"Project-Id-Version: Reddit TV"
+"PO-Revision-Date: 2016-06-13 00:11+2000"
+"Last-Translator: rasjani"
+"MIME-Version: 1.0"
+"Content-Type: text/plain; charset=UTF-8"
+"Content-Transfer-Encoding: 8bit"
+"Language: de"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
+
+
+msgctxt "#30001"
+msgid "Add reddit"
+msgstr "Reddit hinzufügen"
+
+msgctxt "#30002"
+msgid "Hot"
+msgstr ""
+
+msgctxt "#30003"
+msgid "New"
+msgstr "Neu"
+
+msgctxt "#30004"
+msgid "Top"
+msgstr ""
+
+msgctxt "#30005"
+msgid "Comments"
+msgstr "Kommentare"
+
+msgctxt "#30006"
+msgid "Hour"
+msgstr "Stunde"
+
+msgctxt "#30007"
+msgid "Today"
+msgstr "Heute"
+
+msgctxt "#30008"
+msgid "Week"
+msgstr "Woche"
+
+msgctxt "#30009"
+msgid "Month"
+msgstr "Monat"
+
+msgctxt "#30010"
+msgid "Year"
+msgstr "Jahr"
+
+msgctxt "#30011"
+msgid "AllTime"
+msgstr ""
+
+msgctxt "#30012"
+msgid "Randomly play all"
+msgstr "Alle zufällig abspielen"
+
+msgctxt "#30013"
+msgid "Remove reddit"
+msgstr "Reddit entfernen"
+
+msgctxt "#30014"
+msgid "Randomly play unwatched"
+msgstr "Ungesehene zufällig abspielen"
+
+msgctxt "#30015"
+msgid "Randomly play unfinished"
+msgstr "Unbeendete zufällig abspielen"
+
+msgctxt "#30016"
+msgid "Next Page"
+msgstr "Nächste Seite"
+
+msgctxt "#30017"
+msgid "Search"
+msgstr "Suchen"
+
+msgctxt "#30018"
+msgid "Add to queue"
+msgstr "In Abspielliste einreihen"
+
+msgctxt "#30019"
+msgid "Search for reddits"
+msgstr "Nach reddits suchen"
+
+msgctxt "#30020"
+msgid "Results"
+msgstr "Treffer"
+
+msgctxt "#30022"
+msgid "Add to addon favourites"
+msgstr "Zu Addon Favoriten hinzufügen"
+
+msgctxt "#30023"
+msgid "Favourites"
+msgstr "Favoriten"
+
+msgctxt "#30024"
+msgid "Remove from addon favourites"
+msgstr "Aus Addon Favoriten entfernen"
+
+msgctxt "#30025"
+msgid "Download video"
+msgstr "Video runterladen"
+
+msgctxt "#30100"
+msgid "Items per page"
+msgstr "Einträge pro Seite"
+
+msgctxt "#30101"
+msgid "Rating filter"
+msgstr "Bewertungsfilter"
+
+msgctxt "#30102"
+msgid "Force View"
+msgstr "View erzwingen"
+
+msgctxt "#30103"
+msgid "ViewID"
+msgstr ""
+
+msgctxt "#30104"
+msgid "Minimum rating in %"
+msgstr "Minimale Bewertung in %"
+
+msgctxt "#30105"
+msgid "Minimum number of votes for filter"
+msgstr "Minimale Anzahl der Stimmen für den Filter"
+
+msgctxt "#30106"
+msgid "Show "Randomly play all""
+msgstr ""Alle zufällig abspielen" anzeigen"
+
+msgctxt "#30107"
+msgid "Show "Randomly play unwatched""
+msgstr ""Ungesehene zufällig abspielen" anzeigen"
+
+msgctxt "#30108"
+msgid "Show "Randomly play unfinished""
+msgstr ""Unbeendete zufällig abspielen" anzeigen"
+
+msgctxt "#30109"
+msgid "General"
+msgstr "Allgemein"
+
+msgctxt "#30110"
+msgid "Categories"
+msgstr "Kategorien"
+
+msgctxt "#30111"
+msgid "Search: Sorting"
+msgstr "Suche: Sortierung"
+
+msgctxt "#30112"
+msgid "Search: Period"
+msgstr "Suche: Zeitraum"
+
+msgctxt "#30113"
+msgid "Ask"
+msgstr "Fragen"
+
+msgctxt "#30114"
+msgid "Relevance"
+msgstr "Relevanz"
+
+msgctxt "#30115"
+msgid "New"
+msgstr "Neu"
+
+msgctxt "#30116"
+msgid "Hot"
+msgstr "Beliebt"
+
+msgctxt "#30117"
+msgid "Top"
+msgstr ""
+
+msgctxt "#30119"
+msgid "Hour"
+msgstr "Stunde"
+
+msgctxt "#30120"
+msgid "Today"
+msgstr "Heute"
+
+msgctxt "#30121"
+msgid "Week"
+msgstr "Woche"
+
+msgctxt "#30122"
+msgid "Month"
+msgstr "Monat"
+
+msgctxt "#30123"
+msgid "Year"
+msgstr "Jahr"
+
+msgctxt "#30124"
+msgid "AllTime"
+msgstr ""
+
+msgctxt "#30150"
+msgid "Top: Today"
+msgstr "Top: Heute"
+
+msgctxt "#30151"
+msgid "Top: Week"
+msgstr "Top: Woche"
+
+msgctxt "#30152"
+msgid "Top: Month"
+msgstr "Top: Monat"
+
+msgctxt "#30153"
+msgid "Top: Year"
+msgstr "Top: Jahr"
+
+msgctxt "#30154"
+msgid "Top: AllTime"
+msgstr ""
+
+msgctxt "#30155"
+msgid "Hot: Hour"
+msgstr "Hot: Stunde"
+
+msgctxt "#30156"
+msgid "Hot: Today"
+msgstr "Hot: Heute"
+
+msgctxt "#30157"
+msgid "Hot: Week"
+msgstr "Hot: Woche"
+
+msgctxt "#30158"
+msgid "Hot: Month"
+msgstr "Hot: Monat"
+
+msgctxt "#30159"
+msgid "Comments: Hour"
+msgstr "Kommentare: Stunde"
+
+msgctxt "#30160"
+msgid "Comments: Today"
+msgstr "Kommentare: Heute"
+
+msgctxt "#30161"
+msgid "Comments: Week"
+msgstr "Kommentare: Woche"
+
+msgctxt "#30162"
+msgid "Comments: Month"
+msgstr "Kommentare: Monat"
+
+msgctxt "#30163"
+msgid "Comments: Year"
+msgstr "Kommentare: Jahr"
+
+msgctxt "#30164"
+msgid "Comments: AllTime"
+msgstr "Kommentare: AllTime"
+
+msgctxt "#30165"
+msgid "Autoplay"
+msgstr ""
+
+msgctxt "#30166"
+msgid "Play all"
+msgstr "Alle abspielen"
+
+msgctxt "#30167"
+msgid "Play unwatched"
+msgstr "Ungesehene abspielen"
+
+msgctxt "#30168"
+msgid "Play unfinished"
+msgstr "Unbeendete abspielen"
+
+msgctxt "#30169"
+msgid "Show "Play all""
+msgstr ""Alle abspielen" anzeigen"
+
+msgctxt "#30170"
+msgid "Show "Play unwatched""
+msgstr ""Ungesehene abspielen" anzeigen"
+
+msgctxt "#30171"
+msgid "Show "Play unfinished""
+msgstr ""Unbeendete abspielen" anzeigen"
+
+msgctxt "#30178"
+msgid "Enable/disable NSFW content"
+msgstr "NSFW Inhalte aktivieren/deaktivieren"
+
+msgctxt "#30179"
+msgid "Download"
+msgstr ""
+
+msgctxt "#30180"
+msgid "Youtube: Quality / Directory"
+msgstr "Youtube: Qualität / Verzeichnis"
+
+msgctxt "#30181"
+msgid "Vimeo: Quality / Directory"
+msgstr "Vimeo: Qualität / Verzeichnis"
+
+msgctxt "#30182"
+msgid "Dailymotion: Quality / Directory"
+msgstr "Dailymotion: Qualität / Verzeichnis"
+
+msgctxt "#30183"
+msgid "Liveleak: Quality"
+msgstr "Liveleak: Qualität"
+
+msgctxt "#30184"
+msgid "Liveleak: Directory"
+msgstr "Liveleak: Verzeichnis"
+
+msgctxt "#30185"
+msgid "File already exists"
+msgstr "Datei existiert bereits"
+
+msgctxt "#30186"
+msgid "Choose download directory"
+msgstr "Downloadverzeichnis wählen"
+
+msgctxt "#30187"
+msgid "NSFW content enabled!"
+msgstr "NSFW Inhalte aktiviert!"
+
+msgctxt "#30188"
+msgid "NSFW content disabled!"
+msgstr "NSFW Inhalte deaktiviert!"
+
+msgctxt "#30189"
+msgid "Disable NSFW content?"
+msgstr "NSFW Inhalte deaktivieren?"
+
+msgctxt "#30190"
+msgid "Enable NSFW content?"
+msgstr "NSFW Inhalte aktivieren?"
+
+msgctxt "#30191"
+msgid "Are you over eighteen and willing to see adult content?"
+msgstr "Bist Du über achtzehn und möchtest Inhalte für Erwachsene sehen?"
+
+msgctxt "#30192"
+msgid "Gfycat: Directory"
+msgstr "Gfycat: Verzeichnis"
+
+msgctxt "#30193"
+msgid "Enabled Services"
+msgstr "Fähige Dienste"
+
+msgctxt "#30194"
+msgid "YouTube"
+msgstr ""
+
+msgctxt "#30195"
+msgid "Vimeo"
+msgstr ""
+
+msgctxt "#30196"
+msgid "LiveLeak"
+msgstr ""
+
+msgctxt "#30197"
+msgid "DailyMotion"
+msgstr ""
+
+msgctxt "#30198"
+msgid "GfyCat"
+msgstr ""

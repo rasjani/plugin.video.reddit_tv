@@ -1,0 +1,379 @@
+# Addon Name: Reddit TV
+# Addon id: plugin.video.reddit_tv
+# Addon Provider: rasjani
+# Translators: rasjani
+msgid ""
+msgstr ""
+"Project-Id-Version: Reddit TV"
+"PO-Revision-Date: 2016-06-13 00:11+2000"
+"Last-Translator: rasjani"
+"MIME-Version: 1.0"
+"Content-Type: text/plain; charset=UTF-8"
+"Content-Transfer-Encoding: 8bit"
+"Language: fi"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
+
+
+msgctxt "#30001"
+msgid "Add reddit"
+msgstr "Lisää sub-reddit"
+
+msgctxt "#30002"
+msgid "Hot"
+msgstr "Kuuminta"
+
+msgctxt "#30003"
+msgid "New"
+msgstr "Uusimmat"
+
+msgctxt "#30004"
+msgid "Top"
+msgstr "Parhaat"
+
+msgctxt "#30005"
+msgid "Comments"
+msgstr "Kommentit"
+
+msgctxt "#30006"
+msgid "Hour"
+msgstr "Tunti"
+
+msgctxt "#30007"
+msgid "Today"
+msgstr "Päivä"
+
+msgctxt "#30008"
+msgid "Week"
+msgstr "Viikko"
+
+msgctxt "#30009"
+msgid "Month"
+msgstr "Kuukausi"
+
+msgctxt "#30010"
+msgid "Year"
+msgstr "Vuosi"
+
+msgctxt "#30011"
+msgid "AllTime"
+msgstr "Kaikki"
+
+msgctxt "#30012"
+msgid "Randomly play all"
+msgstr "Toista kaikki satunnaisesti"
+
+msgctxt "#30013"
+msgid "Remove reddit"
+msgstr "Poista sub-reddit"
+
+msgctxt "#30014"
+msgid "Randomly play unwatched"
+msgstr "Toista katomattomat satunnaisesti"
+
+msgctxt "#30015"
+msgid "Randomly play unfinished"
+msgstr "Toista keskeneräiset satunnaisesti"
+
+msgctxt "#30016"
+msgid "Next Page"
+msgstr "Seuraava sivu"
+
+msgctxt "#30017"
+msgid "Search"
+msgstr "Haku"
+
+msgctxt "#30018"
+msgid "Add to queue"
+msgstr "Lisä jonoon"
+
+msgctxt "#30019"
+msgid "Search for reddits"
+msgstr "Etsi sub reddittejä"
+
+msgctxt "#30020"
+msgid "Results"
+msgstr "Tulokset"
+
+msgctxt "#30022"
+msgid "Add to addon favourites"
+msgstr "Lisää lisäosan omiin suosikkeihin"
+
+msgctxt "#30023"
+msgid "Favourites"
+msgstr "Suosikit"
+
+msgctxt "#30024"
+msgid "Remove from addon favourites"
+msgstr "Poista lisäosan suosikeista"
+
+msgctxt "#30025"
+msgid "Download video"
+msgstr "Lataa video"
+
+msgctxt "#30100"
+msgid "Items per page"
+msgstr "Videoita sivulla"
+
+msgctxt "#30101"
+msgid "Rating filter"
+msgstr "Arvosana suodatin"
+
+msgctxt "#30102"
+msgid "Force View"
+msgstr "Oletus näkymä"
+
+msgctxt "#30103"
+msgid "ViewID"
+msgstr "Näkymän tunniste"
+
+msgctxt "#30104"
+msgid "Minimum rating in %"
+msgstr "Vähimmäis arvosana %"
+
+msgctxt "#30105"
+msgid "Minimum number of votes for filter"
+msgstr "Vähimmäismäärä äänestyksiä suodattimelle"
+
+msgctxt "#30106"
+msgid "Show "Randomly play all""
+msgstr "Näytä "Toisto kaikki satunnaisesti""
+
+msgctxt "#30107"
+msgid "Show "Randomly play unwatched""
+msgstr "Näytä "Toista katomattomat satunnaisesti""
+
+msgctxt "#30108"
+msgid "Show "Randomly play unfinished""
+msgstr "Näytä "Toista keskeneräiset satunnaisesti""
+
+msgctxt "#30109"
+msgid "General"
+msgstr "Yleiset"
+
+msgctxt "#30110"
+msgid "Categories"
+msgstr "Kategoriat"
+
+msgctxt "#30111"
+msgid "Search: Sorting"
+msgstr "Haku: Suodatus"
+
+msgctxt "#30112"
+msgid "Search: Period"
+msgstr "Haku: Ajanjakso"
+
+msgctxt "#30113"
+msgid "Ask"
+msgstr "Kysy"
+
+msgctxt "#30114"
+msgid "Relevance"
+msgstr "Merkitys"
+
+msgctxt "#30115"
+msgid "New"
+msgstr "Uutta"
+
+msgctxt "#30116"
+msgid "Hot"
+msgstr "Kuuminta"
+
+msgctxt "#30117"
+msgid "Top"
+msgstr "Parhaat"
+
+msgctxt "#30119"
+msgid "Hour"
+msgstr "Tunti"
+
+msgctxt "#30120"
+msgid "Today"
+msgstr "Tänään"
+
+msgctxt "#30121"
+msgid "Week"
+msgstr "Viikko"
+
+msgctxt "#30122"
+msgid "Month"
+msgstr "Kuukausi"
+
+msgctxt "#30123"
+msgid "Year"
+msgstr "Vuosi"
+
+msgctxt "#30124"
+msgid "AllTime"
+msgstr "Kautta aikojen"
+
+msgctxt "#30150"
+msgid "Top: Today"
+msgstr "Parhaat: Tänään"
+
+msgctxt "#30151"
+msgid "Top: Week"
+msgstr "Parhaat: Viikon sisällä"
+
+msgctxt "#30152"
+msgid "Top: Month"
+msgstr "Parhaat: Kuukauden sisällä"
+
+msgctxt "#30153"
+msgid "Top: Year"
+msgstr "Parhaat: Vuoden sisällä"
+
+msgctxt "#30154"
+msgid "Top: AllTime"
+msgstr "Parhaat: Kautta aikojen"
+
+msgctxt "#30155"
+msgid "Hot: Hour"
+msgstr "Kuuminta: Tunnin sisällä"
+
+msgctxt "#30156"
+msgid "Hot: Today"
+msgstr "Kuuminta: Tänään"
+
+msgctxt "#30157"
+msgid "Hot: Week"
+msgstr "Kuuminta: Viikon sisällä"
+
+msgctxt "#30158"
+msgid "Hot: Month"
+msgstr "Kuuminta: Kuukauden sisällä"
+
+msgctxt "#30159"
+msgid "Comments: Hour"
+msgstr "Kommentit: Tunnin sisällä"
+
+msgctxt "#30160"
+msgid "Comments: Today"
+msgstr "Kommentit: Tänään"
+
+msgctxt "#30161"
+msgid "Comments: Week"
+msgstr "Kommentit: Viikon sisällä"
+
+msgctxt "#30162"
+msgid "Comments: Month"
+msgstr "Kommentit: Kuukauden sisällä"
+
+msgctxt "#30163"
+msgid "Comments: Year"
+msgstr "Kommentit: Vuoden sisällä"
+
+msgctxt "#30164"
+msgid "Comments: AllTime"
+msgstr "Kommentit: Kautta aikojen"
+
+msgctxt "#30165"
+msgid "Autoplay"
+msgstr "Automaattitoisto"
+
+msgctxt "#30166"
+msgid "Play all"
+msgstr "Toista kaikki"
+
+msgctxt "#30167"
+msgid "Play unwatched"
+msgstr "Toista katsomattomat"
+
+msgctxt "#30168"
+msgid "Play unfinished"
+msgstr "Toista keskeneräiset"
+
+msgctxt "#30169"
+msgid "Show "Play all""
+msgstr "Näytä "Toista Kaikki""
+
+msgctxt "#30170"
+msgid "Show "Play unwatched""
+msgstr "Näytä "Toista katsomattomat""
+
+msgctxt "#30171"
+msgid "Show "Play unfinished""
+msgstr "Näytä "Toista keskeneräiset""
+
+msgctxt "#30178"
+msgid "Enable/disable NSFW content"
+msgstr "Aktivoi/deaktivoi NSFW sisältö"
+
+msgctxt "#30179"
+msgid "Download"
+msgstr "Lataa"
+
+msgctxt "#30180"
+msgid "Youtube: Quality / Directory"
+msgstr "Youtube: Laatu / Hakemisto "
+
+msgctxt "#30181"
+msgid "Vimeo: Quality / Directory"
+msgstr "Vimeo: Laatu / Hakemisto"
+
+msgctxt "#30182"
+msgid "Dailymotion: Quality / Directory"
+msgstr "Dailymotion: Laatu / Hakemisto"
+
+msgctxt "#30183"
+msgid "Liveleak: Quality"
+msgstr "Liveleak: Laatu"
+
+msgctxt "#30184"
+msgid "Liveleak: Directory"
+msgstr "Liveleak: Hakemisto"
+
+msgctxt "#30185"
+msgid "File already exists"
+msgstr "Tiedosto on jo olemassa"
+
+msgctxt "#30186"
+msgid "Choose download directory"
+msgstr "Valitsi lataus hakemisto"
+
+msgctxt "#30187"
+msgid "NSFW content enabled!"
+msgstr "NSFW sisältö näytetään"
+
+msgctxt "#30188"
+msgid "NSFW content disabled!"
+msgstr "NSFW sisältöä ei näytetä"
+
+msgctxt "#30189"
+msgid "Disable NSFW content?"
+msgstr "Älä näytä NSFW sisältöä?"
+
+msgctxt "#30190"
+msgid "Enable NSFW content?"
+msgstr "Näytä NSFW sisältöä?"
+
+msgctxt "#30191"
+msgid "Are you over eighteen and willing to see adult content?"
+msgstr "Olethan varmasti yli 18 vuotias ja haluat nähdä aikuisille suunnattua sisältöä ?"
+
+msgctxt "#30192"
+msgid "Gfycat: Directory"
+msgstr "Gfycat: Hakemisto"
+
+msgctxt "#30193"
+msgid "Enabled Services"
+msgstr "Video palvelujen valinta"
+
+msgctxt "#30194"
+msgid "YouTube"
+msgstr ""
+
+msgctxt "#30195"
+msgid "Vimeo"
+msgstr ""
+
+msgctxt "#30196"
+msgid "LiveLeak"
+msgstr ""
+
+msgctxt "#30197"
+msgid "DailyMotion"
+msgstr ""
+
+msgctxt "#30198"
+msgid "GfyCat"
+msgstr ""
