@@ -53,3 +53,7 @@
 - changed mantainer to rasjani after no replies from addonscriptorde
 1.3.1
 - user can now enable/disable videoservices to show videos from.
+1.3.2
+- youtu.be links are now shown
+- removed external browser functionality
+- translations are now po files
