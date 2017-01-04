@@ -58,12 +58,14 @@ show_vimeo = addonEnabled("plugin.video.vimeo","show_vimeo")
 show_liveleak = addonEnabled("plugin.video.liveleak","show_liveleak")
 show_dailymotion = addonEnabled("plugin.video.dailymotion_com","show_dailymotion")
 show_gfycat = addon.getSetting("show_gfycat") == "true"
+show_imgur = addon.getSetting("show_imgur") == "true"
 
 site_vimeo = "site:vimeo.com"
 site_youtube = "site:youtu.be OR site:youtube.com"
 site_liveleak = "site:liveleak.com"
 site_dailymotion = "site:dailymotion.com"
 site_gfycat = "site:gfycat.com"
+site_imgur = "site:imgur.com"
 
 allEnabledHosters = []
 if show_youtube:
@@ -76,6 +78,8 @@ if show_dailymotion:
     allEnabledHosters.append(site_dailymotion)
 if show_gfycat:
     allEnabledHosters.append(site_gfycat)
+if show_imgur:
+    allEnabledHosters.append(site_imgur)
 
 filter = addon.getSetting("filter") == "true"
 filterRating = int(addon.getSetting("filterRating"))
@@ -104,6 +108,7 @@ ll_qualiy = ["480p", "720p"][ll_qualiy]
 ll_downDir = str(addon.getSetting("ll_downDir"))
 
 gfy_downDir = str(addon.getSetting("gfy_downDir"))
+imgur_downDir = str(addon.getSetting("imgur_downDir"))
 
 addonUserDataFolder = xbmc.translatePath("special://profile/addon_data/"+addonID)
 subredditsFile = xbmc.translatePath("special://profile/addon_data/"+addonID+"/subreddits")
@@ -222,6 +227,9 @@ def index():
         addDir("[ Dailymotion.com ]", "all", 'listSorting', "", site_dailymotion)
     if show_gfycat:
         addDir("[ GfyCat.com ]", "all", 'listSorting', "", site_gfycat)
+    if show_imgur:
+        addDir("[ Imgur.com ]", "all", 'listSorting', "", site_imgur)
+
     addDir("[B]- "+translation(30001)+"[/B]", "", 'addSubreddit', "")
     addDir("[B]- "+translation(30019)+"[/B]", "", 'searchReddits', "")
     xbmcplugin.endOfDirectory(pluginhandle)
@@ -329,6 +337,7 @@ def listVideos(url, subreddit):
                 matchDailyMotion2 = re.compile('dailymotion.com/.+?video=(.+?)', re.DOTALL).findall(url)
                 matchLiveLeak = re.compile('liveleak.com/view\\?i=(.+?)"', re.DOTALL).findall(url)
                 matchGfycat = re.compile('gfycat.com/(.+?)"', re.DOTALL).findall(url)
+                matchImgur = re.compile('imgur.com/(.+?)\..*"', re.DOTALL).findall(url)
                 hoster = ""
                 if matchYoutube and show_youtube:
                     hoster = "youtube"
@@ -351,6 +360,9 @@ def listVideos(url, subreddit):
                 elif matchGfycat and show_gfycat:
                     hoster = "gfycat"
                     videoID = matchGfycat[0]
+                elif matchImgur and show_imgur:
+                    hoster = "imgur"
+                    videoID = matchImgur[0]
 
                 if hoster:
                     addLink(title, 'playVideo', thumb, description, date, count, commentsUrl, subreddit, hoster, videoID)
@@ -416,6 +428,7 @@ def autoPlay(url, type):
             matchDailyMotion2 = re.compile('dailymotion.com/.+?video=(.+?)', re.DOTALL).findall(url)
             matchLiveLeak = re.compile('liveleak.com/view\\?i=(.+?)"', re.DOTALL).findall(url)
             matchGfycat = re.compile('gfycat.com/(.+?)"', re.DOTALL).findall(url)
+            matchImgur = re.compile('imgur.com/(.+?)\..*"', re.DOTALL).findall(url)
             url = ""
             if matchYoutube and show_youtube:
                 url = getYoutubePlayPluginUrl(matchYoutube[0])
@@ -431,6 +444,8 @@ def autoPlay(url, type):
                 url = getLiveleakPlayPluginUrl(matchLiveLeak[0].split("#")[0])
             elif matchGfyCat and show_gfycat:
                 url = getGfycatPlayPluginUrl(matchGfycat[0])
+            elif matchImgur and show_imgur:
+                url = getImgurPlayPluginUrl(matchImgur[0])
             if url:
                 url = sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode=playVideo"
                 if type.startswith("ALL_"):
@@ -463,6 +478,8 @@ def getPluginUrl(hoster, videoID):
         return getLiveleakPlayPluginUrl(videoID)
     elif hoster=="gfycat":
         return getGfycatPlayPluginUrl(videoID)
+    elif hoster=="imgur":
+        return getImgurPlayPluginUrl(videoID)
 
 
 def getYoutubePlayPluginUrl(id):
@@ -497,8 +514,14 @@ def getLiveleakDownloadPluginUrl(id):
 def getGfycatDownloadPluginUrl(id):
     return "plugin://plugin.video.reddit_tv/?mode=downloadGfycatVideo&url=" + id
 
+def getImgurDownloadPluginUrl(id):
+    return "plugin://plugin.video.reddit_tv/?mode=downloadImgurVideo&url=" + id
+
 def getGfycatPlayPluginUrl(id):
     return "plugin://plugin.video.reddit_tv/?mode=playGfycatVideo&url=" + id
+
+def getImgurPlayPluginUrl(id):
+    return "plugin://plugin.video.reddit_tv/?mode=playImgurVideo&url=" + id
 
 def getGfycatStreamJson(id):
     content = opener.open("http://gfycat.com/cajax/get/"+id).read()
@@ -509,6 +532,9 @@ def getGfycatStreamUrl(id):
     content = getGfycatStreamJson(id)
     if "gfyItem" in content and "mp4Url" in content["gfyItem"]:
         return content["gfyItem"]["mp4Url"]
+
+def getImgurStreamUrl(id):
+    return 'https://i.imgur.com/ ' + id + '.mp4'
 
 def getLiveLeakStreamUrl(id):
     content = opener.open("http://www.liveleak.com/view?i="+id).read()
@@ -527,6 +553,9 @@ def playVideo(url):
 
 def playGfycatVideo(id):
     playVideo(getGfycatStreamUrl(id))
+
+def playImgurVideo(id):
+    playVideo(getImgurStreamUrl(id))
 
 def playLiveLeakVideo(id):
     playVideo(getLiveLeakStreamUrl(id))
@@ -552,7 +581,23 @@ def downloadGfycatVideo(id):
     else:
         xbmc.executebuiltin('XBMC.Notification(Download:,'+translation(30185)+'!,5000)')
 
+def downloadImgurVideo(id):
+    downloader = SimpleDownloader.SimpleDownloader()
 
+    global imgur_downDir
+    while not imgur_downDir:
+        xbmc.executebuiltin('XBMC.Notification(Download:,imgur '+translation(30186)+'!,5000)')
+        addon.openSettings()
+        imgur_downDir = addon.getSetting("imgur_downDir")
+        print imgur_downDir
+
+    url = getImgurStreamUrl(id)
+
+    if not os.path.exists(os.path.join(imgur_downDir, filename)):
+        params = { "url": url, "download_path": imgur_downDir }
+        downloader.download(filename, params)
+    else:
+        xbmc.executebuiltin('XBMC.Notification(Download:,'+translation(30185)+'!,5000)')
 
 def downloadLiveLeakVideo(id):
     downloader = SimpleDownloader.SimpleDownloader()
@@ -723,6 +768,8 @@ def addLink(name, mode, iconimage, description, date, nr, site, subreddit, hoste
         entries.append((translation(30025), 'RunPlugin('+getLiveleakDownloadPluginUrl(videoID)+')',))
     elif hoster=="gfycat":
         entries.append((translation(30025), 'RunPlugin('+getGfycatDownloadPluginUrl(videoID)+')',))
+    elif hoster=="imgur":
+        entries.append((translation(30025), 'RunPlugin('+getImgurDownloadPluginUrl(videoID)+')',))
 
     favEntry = '<favourite name="'+name+'" url="'+u+'" description="'+description+'" thumb="'+iconimage+'" date="'+date+'" site="'+site+'" />'
     entries.append((translation(30022), 'RunPlugin(plugin://'+addonID+'/?mode=addToFavs&url='+urllib.quote_plus(favEntry)+'&type='+urllib.quote_plus(subreddit)+')',))
@@ -797,10 +844,14 @@ elif mode == 'playLiveLeakVideo':
     playLiveLeakVideo(url)
 elif mode == 'playGfycatVideo':
     playGfycatVideo(url)
+elif mode == 'playImgurVideo':
+    playImgurVideo(url)
 elif mode == 'downloadLiveLeakVideo':
     downloadLiveLeakVideo(url)
 elif mode == 'downloadGfycatVideo':
     downloadGfycatVideo(url)
+elif mode == 'downloadImgurVideo':
+    downloadImgurVideo(url)
 elif mode == 'addSubreddit':
     addSubreddit(url)
 elif mode == 'removeSubreddit':
